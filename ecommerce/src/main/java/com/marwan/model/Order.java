@@ -1,15 +1,13 @@
 package com.marwan.model;
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.List;
+
 @Document(collection = "orders")
 public class Order {
     @Id
     private String id;
-    @ManyToOne
     private User user;
-    @ManyToMany
     private List<Product>products;
     private double total;
     private String status;

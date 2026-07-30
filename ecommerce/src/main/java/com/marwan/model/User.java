@@ -1,6 +1,6 @@
 package com.marwan.model;
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.management.relation.Role;
@@ -12,7 +12,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
     private Role role;
     public enum Role{
         ADMIN,CUSTOMER

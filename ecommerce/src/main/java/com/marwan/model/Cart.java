@@ -1,5 +1,5 @@
 package com.marwan.model;
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -8,9 +8,7 @@ import java.util.List;
 public class Cart {
     @Id
     private String id;
-    @OneToOne
     private User user;
-    @ManyToMany
     private List<Product>products;
     private double total;
 
