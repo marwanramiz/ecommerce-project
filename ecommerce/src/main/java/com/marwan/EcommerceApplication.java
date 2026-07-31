@@ -1,13 +1,31 @@
-package com.marwan.ecommerce;
+package com.marwan;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class EcommerceApplication {
+public class EcommerceApplication implements CommandLineRunner {
+
+	@Value("${spring.data.mongodb.uri}")
+	private String mongoUri;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) {
+		System.out.println(">>> Connected to MongoDB Atlas with URI: " + mongoUri);
+	}
+
+	// Explicitly create MongoClient bean so Spring Boot uses Atlas URI
+	@Bean
+	public MongoClient mongoClient() {
+		return MongoClients.create(mongoUri);
+	}
 }
